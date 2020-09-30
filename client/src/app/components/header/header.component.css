@@ -1,0 +1,22 @@
+.hide {
+  display: none;
+}
+li {
+  cursor: pointer;
+}
+.rootCategory a {
+  background-color: orange;
+
+  color: white;
+}
+
+.rootCategory a:hover {
+  background-color: rgba(201, 147, 47, 0.829);
+}
+.secondCategory a {
+  background-color: white;
+  color: black;
+}
+.list {
+  padding: 0px;
+}

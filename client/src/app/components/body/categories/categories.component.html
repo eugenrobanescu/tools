@@ -1,0 +1,20 @@
+<div *ngIf="promiseForCategories">
+  <div id="left">
+    <h1>{{ category.name }}</h1>
+
+    <ul class="list">
+      <li
+        *ngFor="let categories of category.children"
+        [routerLink]="['/', categories._id]"
+      >
+        {{ categories.name }}
+      </li>
+    </ul>
+  </div>
+
+  <div id="right">
+    <div></div>
+    <div></div>
+    Something
+  </div>
+</div>
