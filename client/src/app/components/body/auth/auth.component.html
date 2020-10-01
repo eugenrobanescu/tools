@@ -1,0 +1,95 @@
+<div id="auth-container">
+  <div class="card">
+    <h5 class="card-header info-color white-text text-center py-4">
+      <strong>{{ loginMode ? "Log in" : "Sign in" }}</strong>
+    </h5>
+
+    <div class="card-body px-lg-5 pt-0">
+      <form
+        class="md-form"
+        style="color: #757575"
+        (ngSubmit)="onSubmit(f)"
+        #f="ngForm"
+      >
+        <div *ngIf="!loginMode">
+          <label for="materialLoginFormPassword">Name:</label>
+          <input
+            type="text"
+            id="materialLoginFormPassword"
+            class="form-control"
+            ngModel
+            name="name"
+          />
+        </div>
+        <label for="materialLoginFormEmail">E-mail</label>
+        <input
+          type="email"
+          id="materialLoginFormEmail"
+          class="form-control"
+          ngModel
+          name="email"
+        />
+
+        <label for="materialLoginFormPassword">Password</label>
+        <input
+          type="password"
+          id="materialLoginFormPassword"
+          class="form-control"
+          ngModel
+          name="password"
+        />
+        <div *ngIf="!loginMode">
+          <label for="materialLoginFormPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="materialLoginFormPassword"
+            class="form-control"
+            ngModel
+            name="passwordConfirm"
+          />
+        </div>
+
+        <div
+          *ngIf="loginMode"
+          class="d-flex align-items-center justify-content-between"
+        >
+          <div>
+            <a href="">Forgot password?</a>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+          type="submit"
+        >
+          {{ loginMode ? "Log in" : "Sign in" }}
+        </button>
+
+        <div class="text-center">
+          <p>
+            {{
+              loginMode ? "Not a member?" : "Do you already have an account?"
+            }}
+            <a (click)="changeLoginMode()" style="cursor: pointer; color: blue">
+              {{ loginMode ? "Register" : "Log in" }}</a
+            >
+          </p>
+
+          <p>or sign in with:</p>
+          <a type="button" class="btn-floating btn-fb btn-sm">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a type="button" class="btn-floating btn-tw btn-sm">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a type="button" class="btn-floating btn-li btn-sm">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a type="button" class="btn-floating btn-git btn-sm">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -9,10 +9,8 @@ import * as $ from 'jquery';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
-  promiseForCategories: Promise<boolean>;
+  promiseForCategories: Promise<boolean>; // Pentru a nu se incarca template-ul inainte sa ajunga datele din db
   category;
-  categorySelected;
-  categoriesDisplayed;
 
   constructor(
     private fetchProducts: FetchProductsService,
@@ -22,25 +20,24 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
     this.promiseForCategories = Promise.resolve(false);
 
+    // Verifica daca se schimba "params"
     this.route.params.subscribe((params: Params) => {
       this.showCategories(params.id);
-      // console.log(params.id);
     });
   }
 
   showCategories(category) {
     this.fetchProducts.getCategoryById(category).subscribe((data: any) => {
-      // if
-      console.log(data);
       this.category = data.data.category;
       this.promiseForCategories = Promise.resolve(true);
-      console.log(this.category);
+
       // setTimeout(() => {
       this.hierarchicalList();
       // }, 10);
     });
   }
 
+  // pentru liste
   hierarchicalList() {
     // $('ul.list > li > ul').hide();
     console.log('ceva');

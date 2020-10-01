@@ -3,17 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { WelcomeComponent } from './components/body/welcome/welcome.component';
 import { BodyComponent } from './components/body/body.component';
 import { CategoriesComponent } from './components/body/categories/categories.component';
+import { AuthComponent } from './components/body/auth/auth.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: BodyComponent,
-
-    children: [
-      { path: 'home', component: WelcomeComponent },
-      { path: ':id', component: CategoriesComponent },
-    ],
-  },
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'home', component: WelcomeComponent },
+  { path: 'categories/:id', component: CategoriesComponent },
+  { path: 'auth', component: AuthComponent },
 ];
 
 @NgModule({

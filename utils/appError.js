@@ -11,3 +11,5 @@ class AppError extends Error {
 }
 
 module.exports = AppError;
+
+// AppError-- pur si simplu ne trimite o eroare, mai custom

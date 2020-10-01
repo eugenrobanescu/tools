@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchProductsService } from '../../services/fetch-products.service';
+import { AuthService } from '../../services/auth.service';
+
 import * as $ from 'jquery';
 
 @Component({
@@ -8,15 +10,20 @@ import * as $ from 'jquery';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  isLoggedIn;
+  user;
   promiseForCategories: Promise<boolean>;
-  categories;
-  categorySelected;
-  categoriesDisplayed;
 
-  constructor(private fetchProducts: FetchProductsService) {}
+  categories;
+
+  constructor(
+    private fetchProducts: FetchProductsService,
+    private authService: AuthService
+  ) {}
   ngOnInit(): void {
     this.promiseForCategories = Promise.resolve(false);
-
+    this.userStatus();
+    this.setUser();
     this.showCategories();
   }
 
@@ -40,5 +47,28 @@ export class HeaderComponent implements OnInit {
         $(this).siblings('li').children('ul').hide();
       });
     });
+  }
+
+  logout() {
+    this.authService.logout().subscribe((data) => {
+      this.isLoggedIn = false;
+      localStorage.setItem('user-barberShop', '');
+    });
+    this.setUser();
+  }
+  userStatus() {
+    this.authService.userStatus().subscribe((data: any) => {
+      console.log(data.isLoggedIn);
+      if (data.isLoggedIn) {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    });
+  }
+  setUser() {
+    this.user = localStorage.getItem('user-barberShop')
+      ? JSON.parse(localStorage.getItem('user-barberShop'))
+      : '';
   }
 }

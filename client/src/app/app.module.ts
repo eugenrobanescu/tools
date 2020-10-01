@@ -9,9 +9,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { BodyComponent } from './components/body/body.component';
 import { CategoriesComponent } from './components/body/categories/categories.component';
 import { WelcomeComponent } from './components/body/welcome/welcome.component';
+import { AuthComponent } from './components/body/auth/auth.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, BodyComponent, CategoriesComponent, WelcomeComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, BodyComponent, CategoriesComponent, WelcomeComponent, AuthComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

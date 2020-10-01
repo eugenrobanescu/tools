@@ -8,3 +8,6 @@ module.exports = (fn) => {
         });
     };
 };
+
+//catchAsync -- lucrand foarte mult cu async- await trebuia de fiecare data sa pun try{} catch{}--vezi
+// la controllers cum functioneaza

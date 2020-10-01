@@ -21,6 +21,8 @@ const categoriesSchema = new mongoose.Schema(
     }
 );
 
+// Virtual --Dupa cum vezi,nu avem proprietatea children in schema,dar dupa ce am luat din db categoria dorita
+// o sa ne adauge o proprietate children
 categoriesSchema.virtual("children", {
     ref: ["Products", "Categories"],
     foreignField: "parent",
