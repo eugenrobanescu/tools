@@ -17,6 +17,7 @@ exports.createProduct = catchAsync(async (req, res) => {
     const tool = req.body;
     console.log(req.body);
     const newTool = await ProductModel.create(tool);
+    console.log(newTool);
     res.status(201).json({
         status: "success",
         data: {

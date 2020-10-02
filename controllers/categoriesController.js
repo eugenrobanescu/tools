@@ -2,7 +2,25 @@ const CategoriesModel = require("../models/categoriesModel");
 const catchAsync = require("./../utils/catchAsync");
 
 exports.getCategories = catchAsync(async (req, res) => {
-    const categories = await CategoriesModel.find().populate("children");
+    let categories = await CategoriesModel.aggregate([
+        {
+            $graphLookup: {
+                from: "categories",
+                startWith: "$parent",
+                connectFromField: "parent",
+                connectToField: "_id",
+                as: "parents",
+            },
+        },
+        {
+            $lookup: {
+                from: "categories",
+                localField: "_id",
+                foreignField: "parent",
+                as: "children",
+            },
+        },
+    ]);
 
     res.status(201).json({
         status: "success",
@@ -14,9 +32,26 @@ exports.getCategories = catchAsync(async (req, res) => {
 });
 
 exports.getCategoryById = catchAsync(async (req, res) => {
-    const category = await CategoriesModel.findById(req.params.id).populate(
-        "children"
-    );
+    const category = await CategoriesModel.aggregate([
+        { $match: { slug: req.params.id } },
+        {
+            $graphLookup: {
+                from: "categories",
+                startWith: "$parent",
+                connectFromField: "parent",
+                connectToField: "_id",
+                as: "parents",
+            },
+        },
+        {
+            $lookup: {
+                from: "categories",
+                localField: "_id",
+                foreignField: "parent",
+                as: "children",
+            },
+        },
+    ]);
     res.status(201).json({
         status: "success",
 
@@ -54,8 +89,8 @@ exports.getRootCategories = catchAsync(async (req, res) => {
     });
 });
 exports.createCategory = catchAsync(async (req, res) => {
-    const category = req.body;
-    console.log(req.body);
+    category = req.body;
+
     const newCategory = await CategoriesModel.create(category);
     res.status(201).json({
         status: "success",

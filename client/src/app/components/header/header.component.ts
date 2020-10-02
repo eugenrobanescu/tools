@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
     this.fetchProducts.getRootCategories().subscribe((data: any) => {
       this.categories = data.data.categories;
       this.promiseForCategories = Promise.resolve(true);
-      console.log(this.categories);
+
       // setTimeout(() => {
       this.hierarchicalList();
       // }, 10);
@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
 
   hierarchicalList() {
     // $('ul.list > li > ul').hide();
-    console.log('ceva');
+
     $(document).ready(function () {
       $('.list > li ').hover(function () {
         $(this).children('ul').toggle();
@@ -58,7 +58,6 @@ export class HeaderComponent implements OnInit {
   }
   userStatus() {
     this.authService.userStatus().subscribe((data: any) => {
-      console.log(data.isLoggedIn);
       if (data.isLoggedIn) {
         this.isLoggedIn = true;
       } else {

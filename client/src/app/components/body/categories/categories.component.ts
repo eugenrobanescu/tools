@@ -28,7 +28,8 @@ export class CategoriesComponent implements OnInit {
 
   showCategories(category) {
     this.fetchProducts.getCategoryById(category).subscribe((data: any) => {
-      this.category = data.data.category;
+      this.category = data.data.category[0];
+      console.log(this.category);
       this.promiseForCategories = Promise.resolve(true);
 
       // setTimeout(() => {
