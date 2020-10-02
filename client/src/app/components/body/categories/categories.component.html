@@ -5,7 +5,7 @@
     <ul class="list">
       <li
         *ngFor="let categories of category.children"
-        [routerLink]="['/', categories._id]"
+        [routerLink]="['/categories', categories._id]"
       >
         {{ categories.name }}
       </li>

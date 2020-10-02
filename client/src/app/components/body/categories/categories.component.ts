@@ -40,7 +40,7 @@ export class CategoriesComponent implements OnInit {
   // pentru liste
   hierarchicalList() {
     // $('ul.list > li > ul').hide();
-    console.log('ceva');
+
     $(document).ready(function () {
       $('.list > li ').click(function () {
         $(this).children('ul').show();

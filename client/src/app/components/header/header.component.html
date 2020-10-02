@@ -25,7 +25,6 @@
       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
-          href="#"
           id="navbarDropdown"
           role="button"
           data-toggle="dropdown"
@@ -40,13 +39,17 @@
               class="rootCategory dropdown-item"
               *ngFor="let category of categories"
             >
-              <a [routerLink]="['/', category._id]">{{ category.name }}</a>
+              <a [routerLink]="['/categories', category._id]">{{
+                category.name
+              }}</a>
               <ul class="hide">
                 <li
                   class="secondCategory"
                   *ngFor="let child of category.children"
                 >
-                  <a [routerLink]="['/', child._id]">{{ child.name }}</a>
+                  <a [routerLink]="['/categories', child._id]">{{
+                    child.name
+                  }}</a>
                 </li>
               </ul>
             </li>
