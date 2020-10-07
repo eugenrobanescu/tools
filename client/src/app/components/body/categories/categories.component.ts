@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FetchProductsService } from '../../../services/fetch-products.service';
 import { ShareDataService } from '../../../services/share-data.service';
@@ -10,7 +10,7 @@ import * as $ from 'jquery';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
-  promiseForCategories: Promise<any> = Promise.resolve(false); // Pentru a nu se incarca template-ul inainte sa ajunga datele din db
+  promiseForCategories: Boolean = false; // Pentru a nu se incarca template-ul inainte sa ajunga datele din db
   thereAreCategories: Boolean = true;
   categoriesChildren;
   productsChildren;
@@ -24,6 +24,7 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     // Verifica daca se schimba "params"
+    console.log(this.promiseForCategories);
 
     this.route.params.subscribe((params: Params) => {
       this.showCategories(params.slug);
@@ -34,7 +35,7 @@ export class CategoriesComponent implements OnInit {
     this.fetchProducts.getCategoryBySlug(category).subscribe((data: any) => {
       this.category = data.data.category[0];
       console.log(this.category);
-      this.promiseForCategories = Promise.resolve(true);
+      this.promiseForCategories = true;
 
       if (this.category.type == 'parent') {
         this.fetchProducts
