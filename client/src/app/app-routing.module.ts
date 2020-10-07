@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'home', component: WelcomeComponent },
   { path: 'categories/:slug', component: CategoriesComponent },
   { path: 'auth', component: AuthComponent },
+  // { path: 'admin', component: AdminComponent },
 ];
 
 @NgModule({
