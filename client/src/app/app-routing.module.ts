@@ -4,6 +4,7 @@ import { WelcomeComponent } from './components/body/welcome/welcome.component';
 import { BodyComponent } from './components/body/body.component';
 import { CategoriesComponent } from './components/body/categories/categories.component';
 import { AuthComponent } from './components/body/auth/auth.component';
+import { CartComponent } from './components/body/cart/cart.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'categories/:slug', component: CategoriesComponent },
   { path: 'auth', component: AuthComponent },
   // { path: 'admin', component: AdminComponent },
+  { path: 'cart', component: CartComponent },
 ];
 
 @NgModule({

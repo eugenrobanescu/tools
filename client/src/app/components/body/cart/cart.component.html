@@ -1,0 +1,116 @@
+<div id="cart" class="d-flex justify-content-center d-flex-column">
+  <table id="myTable" class="table" style="width: 100%; margin: 0px auto">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" style="width: 10%">#</th>
+        <th scope="col" style="width: 30%">Produs</th>
+        <th scope="col" style="width: 20%">Price</th>
+        <th scope="col" style="width: 20%">Quantity</th>
+        <th scope="col" style="width: 10%">Sub-total</th>
+        <th scope="col" style="width: 10%">Delete</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of items; index as i">
+      <tr>
+        <th scope="row">{{ i + 1 }}</th>
+        <td class="d-flex justify-content-between align-items-center">
+          {{ item.itemName }}
+          <div class="img-container">
+            <img
+              class="imgs"
+              src="../../../assets/{{ item.itemType }}/{{ item.itemImg }}"
+              alt=""
+            />
+          </div>
+        </td>
+        <td>{{ item.itemPrice }} Ron</td>
+        <td>
+          <input
+            min="1"
+            (blur)="addToCart(i)"
+            style="width: 40px"
+            type="number"
+            value="{{ item.quantity }}"
+          />
+          buc.
+        </td>
+        <td>{{ item.price * item.quantity }} Ron</td>
+        <td style="text-align: center">
+          <a
+            (click)="deleteItem(i)"
+            style="
+              cursor: pointer;
+              color: red;
+              font-family: Arial, Helvetica, sans-serif;
+            "
+            >X</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- for mobile -->
+
+  <div *ngFor="let item of items; index as i">
+    <div class="forMobile">
+      <h1>
+        <b> {{ item.itemName }} </b> &#160;
+
+        <span class=""> {{ item.itemPrice * item.quantity }} RON </span>
+      </h1>
+
+      <!-- <div class="img-container">
+          <img src="`../../../../assets/{{ food.type }}/{{ food.img }}" alt="" />
+        </div> -->
+      <div class="amount-container" style="width: 70%">
+        <div
+          class="d-flex justify-content-center justify-content-between"
+          style="width: 100%; margin-top: 20px"
+        >
+          <div>
+            <input
+              min="1"
+              (blur)="addToCart(i)"
+              style="width: 40px"
+              type="number"
+              value="{{ item.quantity }}"
+            />
+            buc.
+          </div>
+
+          <a
+            (click)="deleteItem(i)"
+            style="
+              cursor: pointer;
+              color: red;
+              font-family: Arial, Helvetica, sans-serif;
+            "
+            >X</a
+          >
+        </div>
+        <div
+          class="d-flex justify-content-center"
+          style="margin-top: 20px"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- sub total -->
+
+  <div id="sub-total">
+    <h1>Total cos</h1>
+    <hr />
+    <div class="d-flex justify-content-between align-items-center">
+      <p>
+        Sub-total
+        <span class="bg-dark" style="color: white; padding: 0px 15px">{{
+          finalPrice
+        }}</span>
+        Ron
+      </p>
+      <button routerLink="/completeOrder" id="order-btn">Comanda</button>
+    </div>
+  </div>
+</div>

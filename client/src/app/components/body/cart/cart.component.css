@@ -1,0 +1,93 @@
+#cart {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+  padding: 64px;
+  flex-wrap: wrap;
+}
+/* #myTable {
+    min-width: 900px;
+  } */
+#myTable td {
+  vertical-align: middle;
+  font-size: 25px;
+  font-weight: 600;
+}
+#myTable th {
+  border-top: none;
+  font-size: 25px;
+}
+.img-container {
+  max-width: 90px;
+  max-height: 90px;
+}
+img {
+  max-width: 90px;
+  max-height: 90px;
+}
+#sub-total {
+  margin-top: 50px;
+  width: 50%;
+}
+#sub-total h1 {
+  font-size: 50px;
+}
+#sub-total p {
+  font-size: 25px;
+  font-weight: 600;
+  margin: 0;
+}
+#order-btn {
+  font-size: 25px;
+  font-weight: 600;
+  border-radius: 5px;
+  background-color: rgba(81, 226, 81, 0.63);
+}
+hr {
+  background-color: red;
+  height: 2px;
+}
+.forMobile {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .forMobile {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 30px;
+    border-bottom: 2px solid black;
+  }
+  #myTable {
+    display: none;
+  }
+  .imgs {
+    display: none;
+  }
+  #sub-total {
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 30px;
+  }
+}
+@media only screen and (max-width: 538px) {
+  #cart {
+    padding: 64px 10px;
+  }
+  .forMobile h1 {
+    font-size: 35px;
+  }
+  #sub-total p {
+    font-size: 23px;
+  }
+}
+
+@media only screen and (max-width: 1268px) {
+  #cart {
+    width: 100%;
+  }
+}

@@ -14,25 +14,49 @@ export class HeaderComponent implements OnInit {
   isLoggedIn;
   user;
   promiseForCategories: Promise<boolean>;
-
   categories;
+
+  cartItems = [];
+  quantityItems = 0;
+  totalPrice = 0;
 
   constructor(
     private fetchProducts: FetchProductsService,
     private authService: AuthService,
-    private updateHeader: UpdateHeaderService
+    private updateHeader: UpdateHeaderService,
+    private changeParam: UpdateHeaderService
   ) {}
   ngOnInit(): void {
     this.promiseForCategories = Promise.resolve(false);
     this.updateHeader.getUpdateHeader().subscribe(() => {
-      console.log('yes sir');
       this.userStatus();
       this.setUser();
     });
     this.userStatus();
     this.setUser();
     this.showCategories();
+    this.onUpdateCart();
+    this.changeParam.getUpdateDataCart().subscribe(() => {
+      this.onUpdateCart();
+    });
   }
+
+  onUpdateCart() {
+    var a = JSON.parse(localStorage.getItem('userCart'));
+    if (a) {
+      this.totalPrice = 0;
+      this.quantityItems = 0;
+      this.cartItems = a;
+      console.log(this.cartItems);
+      this.cartItems.forEach((el) => {
+        this.totalPrice += +(el.price * el.quantity);
+        this.quantityItems += +el.quantity;
+      });
+    }
+  }
+  // onChangeParams(id) {
+  //   this.changeParam.emitParamChangeEvent(id);
+  // }
 
   showCategories() {
     this.fetchProducts.getRootCategories().subscribe((data: any) => {

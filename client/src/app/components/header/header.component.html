@@ -62,7 +62,7 @@
         >
       </li>
     </ul>
-    <div class="btn-group">
+    <div class="btn-group dropleft">
       <button
         type="button"
         class="btn btn-secondary dropdown-toggle"
@@ -74,9 +74,10 @@
         cart
       </button>
       <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
-        <button class="dropdown-item" type="button">Action</button>
-        <button class="dropdown-item" type="button">Another action</button>
-        <button class="dropdown-item" type="button">Something else here</button>
+        <a *ngIf="cartItems.length > 0" routerLink="/cart" class="dropdown-item"
+          ><i style="font-family: sans-serif">{{ quantityItems }}</i> items in
+          cart <i style="font-family: sans-serif"> {{ totalPrice }}</i> lei</a
+        >
       </div>
     </div>
     <form class="form-inline my-2 my-lg-0">
