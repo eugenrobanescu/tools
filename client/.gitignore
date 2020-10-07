@@ -9,6 +9,11 @@
 
 # dependencies
 /node_modules
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+
 
 # profiling files
 chrome-profiler-events*.json

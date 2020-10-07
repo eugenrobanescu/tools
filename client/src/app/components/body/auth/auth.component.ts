@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AuthService } from '../../../services/auth.service';
+import { UpdateHeaderService } from 'src/app/services/update-header.service';
 
 @Component({
   selector: 'app-auth',
@@ -8,7 +11,11 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class AuthComponent implements OnInit {
   loginMode = true;
-  constructor(private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private updateHeader: UpdateHeaderService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -26,14 +33,17 @@ export class AuthComponent implements OnInit {
     if (this.loginMode) {
       this.authService.login(userData).subscribe((data: any) => {
         console.log(data);
-        localStorage.setItem('user-barberShop', JSON.stringify(data.data.user));
+        localStorage.setItem('user-toolsShop', JSON.stringify(data.data.user));
+        this.updateHeader.emitUpdateHeader();
+        this.router.navigate(['/home']);
       });
     } else {
       userData.passwordConfirm = form.value.passwordConfirm;
-      console.log(userData);
+
       this.authService.signup(userData).subscribe((data: any) => {
-        console.log(data);
-        localStorage.setItem('user-barberShop', JSON.stringify(data.data.user));
+        this.router.navigate(['/home']);
+        localStorage.setItem('user-toolsShop', JSON.stringify(data.data.user));
+        this.updateHeader.emitUpdateHeader();
       });
     }
   }

@@ -10,9 +10,11 @@ import { BodyComponent } from './components/body/body.component';
 import { CategoriesComponent } from './components/body/categories/categories.component';
 import { WelcomeComponent } from './components/body/welcome/welcome.component';
 import { AuthComponent } from './components/body/auth/auth.component';
+import { ProductsTemplateComponent } from './components/body/categories/products-template/products-template.component';
+import { CategoriesTemplateComponent } from './components/body/categories/categories-template/categories-template.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, BodyComponent, CategoriesComponent, WelcomeComponent, AuthComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, BodyComponent, CategoriesComponent, WelcomeComponent, AuthComponent, ProductsTemplateComponent, CategoriesTemplateComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

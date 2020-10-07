@@ -10,7 +10,14 @@ export class FetchProductsService {
   getRootCategories() {
     return this.http.get(`http://localhost:8000/api/categories/rootCategories`);
   }
-  getCategoryById(id) {
-    return this.http.get(`http://localhost:8000/api/categories/${id}`);
+  getCategoryBySlug(slug) {
+    return this.http.get(
+      `http://localhost:8000/api/categories/categoriesBySlug/${slug}`
+    );
+  }
+  getParentBySlug(slug) {
+    return this.http.get(
+      `http://localhost:8000/api/categories/parentCategories/${slug}`
+    );
   }
 }

@@ -1,4 +1,4 @@
-<div *ngIf="promiseForCategories">
+<div *ngIf="promiseForCategories.__zone_symbol__value">
   <ul class="breadcrumb">
     <li>
       <a routerLink="/home"> Home </a>
@@ -12,8 +12,9 @@
     <li>{{ category.name }}</li>
   </ul>
   <div class="categories-container">
+    <!-- LEFT SIDE -->
     <div id="left">
-      <h3>{{ category.name }}</h3>
+      <h3 style="padding-bottom: 30px">{{ category.name }}</h3>
 
       <ul class="list">
         <li
@@ -25,10 +26,18 @@
       </ul>
     </div>
 
+    <!-- RIGHT SIDE  -->
     <div id="right">
       <div></div>
       <div></div>
-      Teoretic..niste produse :D
+      <app-categories-template
+        style="width: 100%"
+        *ngIf="thereAreCategories"
+      ></app-categories-template>
+      <app-products-template
+        style="width: 100%"
+        *ngIf="!thereAreCategories"
+      ></app-products-template>
     </div>
   </div>
 </div>

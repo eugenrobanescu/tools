@@ -9,7 +9,7 @@ const categoriesSchema = new mongoose.Schema(
             type: String,
             default: null,
         },
-        type: String,
+        type: [String],
         parent: {
             type: mongoose.Schema.ObjectId,
             ref: "Categories",

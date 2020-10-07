@@ -9,11 +9,15 @@ router
 
 router.route("/rootCategories").get(categoriesController.getRootCategories);
 router
+    .route("/categoriesBySlug/:slug")
+    .get(categoriesController.getCategoriesBySlug);
+router
+    .route("/parentCategories/:slug")
+    .get(categoriesController.getParentBySlug);
+router
     .route("/:id")
     .get(categoriesController.getCategoryById)
     .patch(categoriesController.getCategoryByIdAndUpdate)
     .delete(categoriesController.deleteCategory);
 
-
-    
 module.exports = router;

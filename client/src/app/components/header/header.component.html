@@ -31,7 +31,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Dropdown
+          Categories
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <ul class="list" *ngIf="promiseForCategories">
@@ -42,13 +42,13 @@
               <a [routerLink]="['/categories', category.slug]">{{
                 category.name
               }}</a>
-              <ul class="hide">
+              <ul class="hide" *ngIf="!category.type.includes('parent')">
                 <li
                   class="secondCategory"
                   *ngFor="let child of category.children"
                 >
                   <a [routerLink]="['/categories', child.slug]">{{
-                    child.name
+                    child.slug
                   }}</a>
                 </li>
               </ul>
@@ -62,10 +62,27 @@
         >
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <h3>Hi, {{ user.name }}</h3>
+    <div class="btn-group">
       <button
-        *ngIf="isLoggedIn"
+        type="button"
+        class="btn btn-secondary dropdown-toggle"
+        data-toggle="dropdown"
+        data-display="static"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        cart
+      </button>
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
+        <button class="dropdown-item" type="button">Action</button>
+        <button class="dropdown-item" type="button">Another action</button>
+        <button class="dropdown-item" type="button">Something else here</button>
+      </div>
+    </div>
+    <form class="form-inline my-2 my-lg-0">
+      <h3 *ngIf="isLoggedIn">Hi, {{ user.name }}</h3>
+      <button
+        *ngIf="!isLoggedIn"
         routerLink="/auth"
         class="btn btn-outline-success my-2 my-sm-0"
         type="submit"
@@ -73,7 +90,7 @@
         Login
       </button>
       <button
-        *ngIf="!isLoggedIn"
+        *ngIf="isLoggedIn"
         (click)="logout()"
         routerLink="/auth"
         class="btn btn-outline-success my-2 my-sm-0"

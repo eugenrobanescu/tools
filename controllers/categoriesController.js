@@ -32,8 +32,19 @@ exports.getCategories = catchAsync(async (req, res) => {
 });
 
 exports.getCategoryById = catchAsync(async (req, res) => {
+    const category = await CategoriesModel.findById(req.params.id);
+    res.status(201).json({
+        status: "success",
+
+        data: {
+            category,
+        },
+    });
+});
+
+exports.getCategoriesBySlug = catchAsync(async (req, res) => {
     const category = await CategoriesModel.aggregate([
-        { $match: { slug: req.params.id } },
+        { $match: { slug: req.params.slug } },
         {
             $graphLookup: {
                 from: "categories",
@@ -46,6 +57,36 @@ exports.getCategoryById = catchAsync(async (req, res) => {
         {
             $lookup: {
                 from: "categories",
+                localField: "_id",
+                foreignField: "parent",
+                as: "children",
+            },
+        },
+    ]);
+    res.status(201).json({
+        status: "success",
+
+        data: {
+            category,
+        },
+    });
+});
+
+exports.getParentBySlug = catchAsync(async (req, res) => {
+    const category = await CategoriesModel.aggregate([
+        { $match: { slug: req.params.slug } },
+        {
+            $graphLookup: {
+                from: "categories",
+                startWith: "$parent",
+                connectFromField: "parent",
+                connectToField: "_id",
+                as: "parents",
+            },
+        },
+        {
+            $lookup: {
+                from: "products",
                 localField: "_id",
                 foreignField: "parent",
                 as: "children",

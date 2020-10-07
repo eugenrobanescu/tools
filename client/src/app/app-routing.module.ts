@@ -8,7 +8,7 @@ import { AuthComponent } from './components/body/auth/auth.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: WelcomeComponent },
-  { path: 'categories/:id', component: CategoriesComponent },
+  { path: 'categories/:slug', component: CategoriesComponent },
   { path: 'auth', component: AuthComponent },
 ];
 
